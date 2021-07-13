@@ -1,4 +1,4 @@
-
+import $ from 'jquery'
 
 
 // 通过父类保存参数
@@ -29,19 +29,29 @@ class ReactNativeUnit extends Unit {
     let contentStr
 
     for (let propName in props) {
-      if (propName === 'children') {
+
+      // 如果属性为事件，添加事件 委托到 document 上
+      if (/on[A-Z]/.test(propName)) {
+        
+        let eventType = propName.slice(2).toLowerCase()
+        $(document).on(eventType, `[data-reactid=${rootId}]`, props[propName])
+
+      } else if (propName === 'children') {
+
         contentStr = props[propName].map((child, idx) => {
           // 递归循环子节点
          let childInstance = createReactUnit(child)
-        //  加上子节点的 id
+          //  加上子节点的 id
          return childInstance.getMarkUp(`${rootId}-${idx}`)
         })
         .join('') // 将数组 ['<span>hello</span>', '<button>123</button>'] 拼成字符串
+
       } else {
+
         tagStart += (`${propName}=${props[propName]}`)
+      
       }
     }
-
 
     return tagStart + '>' + contentStr  +tagEnd
   }

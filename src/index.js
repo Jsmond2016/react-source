@@ -11,8 +11,9 @@ import React from './react'
 // }, "hello", /*#__PURE__*/React.createElement("span", null, "234"));
 
 
+function say() { alert('111') }
 
-let element = React.createElement("div", {name: "xxx"}, "hello", React.createElement("span", null, "234"))
+let element = React.createElement("div", { name: "xxx" }, "hello", React.createElement("button", {onClick: say}, "234"))
 
 
 console.log(element)
