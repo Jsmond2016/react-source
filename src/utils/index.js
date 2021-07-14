@@ -1,6 +1,5 @@
 import $ from 'jquery'
 
-
 // 通过父类保存参数
 class Unit {
   constructor(element) {
@@ -57,6 +56,21 @@ class ReactNativeUnit extends Unit {
   }
 }
 
+// 渲染 React 组件
+class ReactCompositionUnit extends Unit {
+  getMarkUp(rootId) {
+    this._rootId = rootId
+    let { type: Component, props } = this.currentElement
+    let componentInstance = new Component(props)
+    // render 后返回的结果
+    let reactComponentRenderer = componentInstance.render() // 数字0
+    // 递归渲染 组件 render 后的返回结果
+    let reactCompositionInstance = createReactUnit(reactComponentRenderer)
+    let markUp = reactCompositionInstance.getMarkUp(rootId)
+    return markUp // 实现把 render 返回的结果作为 字符串返还回去
+  }
+}
+
 
 function createReactUnit(element) {
   if (typeof element === 'string' || typeof element === 'number') {
@@ -64,8 +78,12 @@ function createReactUnit(element) {
   }
 
   // 表示使用 React.createElement 创建的元素
-  if (typeof element === 'object' || typeof element.type === 'string') {
+  if (typeof element === 'object' && typeof element.type === 'string') {
     return new ReactNativeUnit(element)
+  }
+
+  if (typeof element === 'object' && typeof element.type === 'function') {
+    return new ReactCompositionUnit(element) // {type: Counter, {name: 'xxx'}}
   }
 
 }

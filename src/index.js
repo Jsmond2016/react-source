@@ -4,6 +4,8 @@
 import React from './react'
 
 
+
+
 // let jsxDom = <div name="xxx">hello<button>234</button></div>
 // babel 转换成 虚拟 DOM 对象如下：https://www.babeljs.cn/repl
 // React.createElement("div", {
@@ -20,6 +22,19 @@ console.log(element)
 
 
 
+class Counter extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      number: 1
+    }
+  }
+  render() {
+    console.log(this.props);
+    return this.state.number
+  }
+}
+
 // jsx 语法转换成 虚拟 DOM 对象
-React.render(element, document.getElementById('root'));
+React.render(React.createElement(Counter, {name: 'test'}), document.getElementById('root'));
 

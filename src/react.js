@@ -3,12 +3,13 @@ import $ from 'jquery'
 
 import createReactUnit from './utils'
 import createElement from './element'
-
+import Component from './component.js'
 
 let React = {
   render,
   nextRootIndex: 0,
-  createElement
+  createElement,
+  Component
 }
 
 // 给每一个元素添加一个属性，为了方便获取这个元素
