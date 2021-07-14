@@ -63,7 +63,7 @@ class ReactCompositionUnit extends Unit {
     let { type: Component, props } = this.currentElement
     let componentInstance = new Component(props)
     // render 后返回的结果
-    let reactComponentRenderer = componentInstance.render() // 数字0
+    let reactComponentRenderer = componentInstance.render() // render 返回的数字 123，若含有子组件，则 往下继续递归
     // 递归渲染 组件 render 后的返回结果
     let reactCompositionInstance = createReactUnit(reactComponentRenderer)
     let markUp = reactCompositionInstance.getMarkUp(rootId)

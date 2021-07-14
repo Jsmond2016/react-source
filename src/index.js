@@ -26,7 +26,7 @@ class Counter extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      number: 1
+      number: 123
     }
   }
   render() {
