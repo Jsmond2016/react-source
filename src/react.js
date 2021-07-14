@@ -20,6 +20,9 @@ function render(element, container) {
   let markUp = createReactUnitInstance.getMarkUp(React.nextRootIndex)
 
   $(container).html(markUp)
+
+  // 触发挂载完成的方法
+  $(document).trigger('mounted') // 所有组件都 OK 了，发射之前订阅的函数
 }
 
 

@@ -21,6 +21,20 @@ let element = React.createElement("div", { name: "xxx" }, "hello", React.createE
 console.log(element)
 
 
+class SubCounter {
+  componentWillMount() {
+    console.log('儿子--组件将要挂载')
+  }
+
+  componentDidMount() {
+    console.log('儿子--组件已经挂载')
+  }
+
+  render() {
+    return '123'
+  }
+}
+
 
 class Counter extends React.Component {
   constructor(props) {
@@ -29,9 +43,17 @@ class Counter extends React.Component {
       number: 123
     }
   }
+
+  componentWillMount() {
+    console.log('父亲--组件将要挂载')
+  }
+
+  componentDidMount() {
+    console.log('父亲--组件已经挂载')
+  }
+
   render() {
-    console.log(this.props);
-    return this.state.number
+    return <SubCounter />
   }
 }
 

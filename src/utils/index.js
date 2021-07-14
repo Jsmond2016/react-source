@@ -62,11 +62,22 @@ class ReactCompositionUnit extends Unit {
     this._rootId = rootId
     let { type: Component, props } = this.currentElement
     let componentInstance = new Component(props)
+
+    // 组件实例化后执行 componentWillMount
+    componentInstance.componentWillMount && componentInstance.componentWillMount()
+
     // render 后返回的结果
     let reactComponentRenderer = componentInstance.render() // render 返回的数字 123，若含有子组件，则 往下继续递归
     // 递归渲染 组件 render 后的返回结果
     let reactCompositionInstance = createReactUnit(reactComponentRenderer)
+
     let markUp = reactCompositionInstance.getMarkUp(rootId)
+
+    // 组件挂载完成后执行，顺序，先儿子，后父亲
+    $(document).on('mounted', () => {
+      componentInstance.componentDidMount && componentInstance.componentDidMount()
+    })
+
     return markUp // 实现把 render 返回的结果作为 字符串返还回去
   }
 }
