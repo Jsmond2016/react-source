@@ -45,15 +45,30 @@ class Counter extends React.Component {
   }
 
   componentWillMount() {
-    console.log('父亲--组件将要挂载')
+    console.log('组件==> willMount')
+  }
+
+  componentShouldUpdate(nextprops, nextState) {
+    console.log('组件==> shouldUpdate')
+    return true
+  }
+
+  componentDidUpdate(){
+    console.log('组件==> didUpdate')
+    console.log('this.state.number: ', this.state.number);
   }
 
   componentDidMount() {
-    console.log('父亲--组件已经挂载')
+    console.log('组件==> didMount')
+    setInterval(() => {
+      this.setState({
+        number: this.state.number + 1
+      })
+    }, 1000);
   }
 
   render() {
-    return <SubCounter />
+    return this.state.number
   }
 }
 
