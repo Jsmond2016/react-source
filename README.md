@@ -631,3 +631,6 @@ React.render(React.createElement(Counter, {name: 'test'}), document.getElementBy
 
 
 
+## 参考资料：
+
+- [珠峰架构从零手写React框架](https://www.bilibili.com/video/BV1dK411N7gp)
