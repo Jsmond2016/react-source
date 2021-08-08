@@ -2,6 +2,20 @@
 
 > 基于 React 16.x 版本
 
+目录导读：
+
+- 新建项目
+- 项目初始化
+- 新增文本组件
+- 实现 createElement
+- 递归子节点拼成 DOM
+- 添加事件委托
+- 实现 Component 组件
+- 生命周期的实现
+- setState 方法实现
+
+正文开始：
+
 ## 新建项目
 
 - 使用 cra 创建项目，`src` 目录下只留下 `index.js, App.js` 文件
@@ -628,6 +642,12 @@ class Counter extends React.Component {
 // jsx 语法转换成 虚拟 DOM 对象
 React.render(React.createElement(Counter, {name: 'test'}), document.getElementById('root'));
 ```
+
+
+
+写在最后：
+
+- 过程源码：[react-source](https://github.com/Jsmond2016/react-source) 对照 commit 记录即可查看每一步的实现
 
 
 
